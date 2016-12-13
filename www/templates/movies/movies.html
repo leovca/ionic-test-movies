@@ -1,0 +1,30 @@
+<ion-view view-title="Movies">
+  <ion-nav-buttons side="left">
+    <button menu-toggle="left" class="button button-icon icon ion-navicon"></button>
+  </ion-nav-buttons>
+
+  <ion-nav-buttons side="right">
+    <button ng-if="moviesCtrl.order != '-score'" class="button" ng-click="moviesCtrl.order = '-score'">
+      <span class="ion-star"></span>
+    </button>
+
+    <button ng-if="moviesCtrl.order != 'title'" class="button" ng-click="moviesCtrl.order = 'title'">
+      <span class="ion-ios-arrow-thin-down"></span>
+    </button>
+  </ion-nav-buttons>
+
+  <ion-content>
+    <ion-list>
+      <ion-item ng-repeat="movie in moviesCtrl.movieList | filter:{ genres: moviesCtrl.filter } | orderBy: [moviesCtrl.order, 'title'] track by movie.id  ">
+        <div>{{ ::movie.title}}</div>
+            <ul class="genres-list">
+              <li ng-repeat="gen in movie.genres | genres">
+                <a ui-sref="app.movies({ gen: gen })">{{gen}}</a>
+              </li>
+            </ul>
+        </div>
+        <div>{{ ::movie.score | number:1}} <span class="ion-star"></span> <a ui-sref="app.movieDetails({ id: movie.id })">( {{ ::movie.rating.length}} reviews )</a></div>
+      </ion-item>
+    </ion-list>
+  </ion-content>
+</ion-view>

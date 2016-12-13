@@ -1,0 +1,22 @@
+<ion-side-menus>
+  <ion-side-menu side="left">
+    <ion-content>
+      <ion-item menu-close ui-sref="app.movies">Movies</ion-item>
+      <div class="item item-divider">Movie Generes</div>
+      <ion-item menu-close ui-sref="app.movies({ gen: genere })" ng-repeat="genere in mainCtrl.genres | orderBy:'toString()'">
+        {{genere}}
+      </ion-item>
+    </ion-content>
+  </ion-side-menu>
+
+  <ion-side-menu-content>
+
+    <ion-nav-bar class="bar-positive">
+      <ion-nav-back-button>
+      </ion-nav-back-button>
+    </ion-nav-bar>
+
+    <ion-nav-view></ion-nav-view>
+
+  </ion-side-menu-content>
+</ion-side-menus>

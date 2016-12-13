@@ -1,0 +1,29 @@
+<ion-view view-title="Movie Details">
+  <ion-content>
+
+    <div class="card">
+      <div class="item item-text-wrap">
+        <div>{{ ::movieCtrl.movie.title}}</div>
+        <ul class="genres-list">
+          <li ng-repeat="gen in movieCtrl.movie.genres | genres">
+            <a ui-sref="app.movies({ gen: gen })">{{gen}}</a>
+          </li>
+        </ul>
+        <div>Rate: <span class="ion-star"></span> {{ ::movieCtrl.movie.score | number:1}}</div>
+      </div>
+      <div class="item item-divider">
+       Ratings
+      </div>
+      <div class="item">
+        <ion-list>
+          <ion-item ng-repeat="rating in movieCtrl.movie.rating | orderBy: ['-timestamp']">
+            <div>{{ ::movieCtrl.users[rating.user].name}} - <span>{{ ::movieCtrl.users[rating.user].email}}</span></div>
+            <div>Rate: <span class="ion-star"></span> {{ :: rating.score}}</div>
+            <div>{{ ::movieCtrl.getDateTime(rating.timestamp)}}</div>
+          </ion-item>
+        </ion-list>
+      </div>
+    </div>
+
+  </ion-content>
+</ion-view>

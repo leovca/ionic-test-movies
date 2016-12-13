@@ -1,0 +1,12 @@
+/* Empty. Add your own CSS if you like */
+.genres-list li {
+  display: inline-block;
+}
+
+.genres-list li:after {
+  content: ' | ';
+}
+
+.genres-list li:last-child:after {
+  content: "";
+}
